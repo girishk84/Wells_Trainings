@@ -1,0 +1,95 @@
+PS C:\Windows\system32> add-axureaccount
+add-axureaccount : The term 'add-axureaccount' is not recognized as the name of a cmdlet, function, script file, or operable 
+program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ add-axureaccount
++ ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (add-axureaccount:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+
+PS C:\Windows\system32> Add-AzureAccount
+
+Id                                                             Type Subscriptions                    Tenants                         
+--                                                             ---- -------------                    -------                         
+girishk84@gmail.com                                            User 41e17daa-062f-4539-a540-2c190... {88214367-780e-45e0-b73a-adeb...
+
+
+
+PS C:\Windows\system32> Get-AzurePublishSettingsFile 
+
+PS C:\Windows\system32> Import-AzurePublishSettingsFile "C:\Users\abridge\Documents\Adatum-credentials.publishsettings"
+
+
+Id          : 41e17daa-062f-4539-a540-2c1909f7b1cd
+Name        : Visual Studio Enterprise
+Environment : AzureCloud
+Account     : D55608F1E75B6DFFE61A11A857DB9F3D1ED6EC84
+State       : 
+Properties  : {}
+
+
+
+
+PS C:\Windows\system32> $skey1=(Get-AzureStorageKey -StorageAccountName "adatumcdngirish").Primary
+
+PS C:\Windows\system32> @skey1
+At line:1 char:1
++ @skey1
++ ~~~~~~
+The splatting operator '@' cannot be used to reference variables in an expression. '@skey1' can be used only as an argument to a 
+command. To reference variables in an expression use '$skey1'.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : SplattingNotPermitted
+ 
+
+PS C:\Windows\system32> $skey1
+4TkVqPx44nQcH21EnSQsfVvG1KEd4AZWbJbqx6PlCfjghYUp9BA2Q5bXpmVp1yWQxQSTBVvW3ras5fwoe+frrQ==
+
+PS C:\Windows\system32> $context1=New-AzureStorageContext -StorageAccountKey $skey1 -StorageAccountName "adatumcdngirish"
+
+PS C:\Windows\system32> $context1
+
+
+StorageAccountName : adatumcdngirish
+BlobEndPoint       : https://adatumcdngirish.blob.core.windows.net/
+TableEndPoint      : https://adatumcdngirish.table.core.windows.net/
+QueueEndPoint      : https://adatumcdngirish.queue.core.windows.net/
+FileEndPoint       : https://adatumcdngirish.file.core.windows.net/
+Context            : Microsoft.WindowsAzure.Commands.Common.Storage.AzureStorageContext
+Name               : 
+StorageAccount     : BlobEndpoint=https://adatumcdngirish.blob.core.windows.net/;QueueEndpoint=https://adatumcdngirish.queue.core.win
+                     dows.net/;TableEndpoint=https://adatumcdngirish.table.core.windows.net/;FileEndpoint=https://adatumcdngirish.fil
+                     e.core.windows.net/;AccountName=adatumcdngirish;AccountKey=[key hidden]
+EndPointSuffix     : core.windows.net/
+
+
+
+
+PS C:\Windows\system32> Set-AzureStorageBlobContent -Blob "Welcome" -Container "adatumcontainer" -File "C:\20553\AllFiles\Labfiles\Lab09\Starter\Welcome.png" -Force
+Set-AzureStorageBlobContent : Could not get the storage context.  Please pass in a storage context or set the current storage 
+context.
+At line:1 char:1
++ Set-AzureStorageBlobContent -Blob "Welcome" -Container "adatumcontainer" -File " ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : CloseError: (:) [Set-AzureStorageBlobContent], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.WindowsAzure.Commands.Storage.Blob.SetAzureBlobContentCommand
+ 
+
+PS C:\Windows\system32> Set-AzureStorageBlobContent -Blob "Welcome" -Container "adatumcontainer" -File "C:\20553\AllFiles\Labfiles\Lab09\Starter\Welcome.png" -Context $context1 -Force
+
+
+ICloudBlob        : Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob
+BlobType          : BlockBlob
+Length            : 157964
+ContentType       : application/octet-stream
+LastModified      : 10/27/2016 11:26:48 AM +00:00
+SnapshotTime      : 
+ContinuationToken : 
+Context           : Microsoft.WindowsAzure.Commands.Common.Storage.AzureStorageContext
+Name              : Welcome
+
+
+
+
+PS C:\Windows\system32> 

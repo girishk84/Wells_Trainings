@@ -1,0 +1,75 @@
+ Get-AzureVM -Name WebVM1 -ServiceName WebVMgirish
+
+ 
+DeploymentName                    : WebVMgirish
+Name                              : WebVM1
+Label                             :
+VM                                : Microsoft.WindowsAzure.Commands.ServiceManagement.Model.PersistentVM
+InstanceStatus                    : ReadyRole
+IpAddress                         : 10.2.0.4
+InstanceStateDetails              :
+PowerState                        : Started
+InstanceErrorCode                 :
+InstanceFaultDomain               : 0
+InstanceName                      : WebVM1
+InstanceUpgradeDomain             : 0
+InstanceSize                      : Small
+HostName                          : WebVM1
+AvailabilitySetName               :
+DNSName                           : http://webvmgirish.cloudapp.net/
+Status                            : ReadyRole
+GuestAgentStatus                  : Microsoft.WindowsAzure.Commands.ServiceManagement.Model.GuestAgentStatus
+ResourceExtensionStatusList       : {}
+PublicIPAddress                   :
+PublicIPName                      :
+PublicIPDomainNameLabel           :
+PublicIPFqdns                     : {}
+NetworkInterfaces                 : {}
+VirtualNetworkName                : Group ADATUMgroup ADATUM-VNET
+RemoteAccessCertificateThumbprint : F7E3484B4C7785B23E3EA6A496ED3D9267366D67
+ServiceName                       : WebVMgirish
+OperationDescription              : Get-AzureVM
+OperationId                       : fab37d98f92b3867a6ba274bff4b4fe8
+OperationStatus                   : OK
+
+
+#To set avail availbility set name 
+
+PS C:\Windows\system32> Get-AzureVM -Name WebVM1 -ServiceName webVMgirish |  Set-AzureAvailabilitySet -AvailabilitySetNa
+me adatumfrontend | Update-AzureVM
+
+#perform the same action for webVM2 as well.
+#storage key
+E72Wtguv1vr8U+lcgBrifc2MWkXOHPyLjFwxfcHEQagOO99yx8Y0XqnXS30W/QtoFQOgcw6/lEMiNg4VUGFWUQ==
+
+#This is the blob property
+https://adatumstoragegirish.blob.core.windows.net/my-azure-storage
+
+#Adding VHD to the storage account
+
+
+PS C:\Windows\system32> Add-AzureVhd -Destination https://adatumstoragegirish.blob.core.windows.net/my-azure-storage/205
+33B_DataDisk.vhd -LocalFilePath "C:\Users\abridge\Downloads\20533B-ENU-Allfiles\Labfiles\Lab04\Starter\20533B_DataDisk.v
+hd"
+MD5 hash is being calculated for the file  C:\Users\abridge\Downloads\20533B-ENU-Allfiles\Labfiles\Lab04\Starter\20533B_
+DataDisk.vhd.
+MD5 hash calculation is completed.
+Elapsed time for the operation: 00:00:00
+Creating new page blob of size 104858112...
+Detecting the empty data blocks in the local file.
+Detecting the empty data blocks completed.
+Elapsed time for upload: 00:00:05
+
+LocalFilePath                                               DestinationUri
+-------------                                               --------------
+C:\Users\abridge\Downloads\20533B-ENU-Allfiles\Labfiles\... https://adatumstoragegirish.blob.core.windows.net/my-azu...
+
+Creating new azure web site in different location
+PS C:\Windows\system32> New-AzureWebsite -Name adatumwebappgirish2 -Location "West Central US"
+
+http://asarumprodgirish.trafficmanager.net/
+
+
+
+
+
